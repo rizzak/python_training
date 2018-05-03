@@ -78,7 +78,9 @@ class ContactHelper:
 
     def delete_first_contact(self):
         wd = self.app.wd
-        # select first group
+        # select first contact
         wd.find_element_by_name("selected[]").click()
         # submit deletion
-        wd.find_element_by_css_selector('input[value=Delete]')
+        wd.find_element_by_css_selector('input[value=Delete]').click()
+        # accept alert deletion
+        wd.switch_to_alert().accept()
