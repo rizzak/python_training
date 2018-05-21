@@ -76,6 +76,20 @@ class ContactHelper:
         wd.find_element_by_id('search_count')
 
 
+    def edit_first_contact(self, first_name):
+        wd = self.app.wd
+        # select first contact
+        wd.find_element_by_name("selected[]").click()
+        # click edit first element
+        wd.find_element_by_css_selector('[alt="Edit"]').click()
+        # edit contact name
+        wd.find_element_by_name("firstname").click()
+        wd.find_element_by_name("firstname").clear()
+        wd.find_element_by_name("firstname").send_keys(first_name)
+        wd.find_element_by_css_selector('[name="update"]').click()
+        # Ждем возврата на главную страницу
+        wd.find_element_by_id('search_count')
+
     def delete_first_contact(self):
         wd = self.app.wd
         # select first contact
