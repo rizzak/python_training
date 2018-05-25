@@ -10,6 +10,8 @@ class ContactHelper:
         wd.find_element_by_link_text("add new").click()
         self.fill_contact_form(contact)
         wd.find_element_by_xpath("//div[@id='content']/form/input[21]").click()
+        # Возвращаемся на главную
+        self.app.return_to_home_page()
         # Ждем возврата на главную страницу
         wd.find_element_by_id('search_count')
 
@@ -63,6 +65,8 @@ class ContactHelper:
         # edit contact name
         self.fill_contact_form(new_contact_data)
         wd.find_element_by_css_selector('[name="update"]').click()
+        # Возвращаемся на главную
+        self.app.return_to_home_page()
         # Ждем возврата на главную страницу
         wd.find_element_by_id('search_count')
 
