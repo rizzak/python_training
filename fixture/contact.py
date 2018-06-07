@@ -76,7 +76,7 @@ class ContactHelper:
         wd = self.app.wd
         self.app.open_home_page()
         # select first contact
-        wd.find_element_by_name("selected[]").click()
+        wd.find_element_by_name('selected[]').click()
         # submit deletion
         wd.find_element_by_css_selector('input[value=Delete]').click()
         # accept alert deletion
@@ -91,8 +91,9 @@ class ContactHelper:
         wd = self.app.wd
         self.app.open_home_page()
         contacts = []
-        for element in wd.find_elements_by_css_selector('tr[name="entry"]'):
-            text = element.text
-            element.find_element_by_name('selected[]').get_attribute('value')
-            contacts.append(Contact(first_name=text, last_name=text, id=id))
+        for element in wd.find_elements_by_css_selector('[name="entry"]'):
+            first_name = element.find_elements_by_css_selector('td')[2].text
+            last_name = element.find_elements_by_css_selector('td')[1].text
+            id = element.find_element_by_name('selected[]').get_attribute('value')
+            contacts.append(Contact(first_name=first_name, last_name=last_name, id=id))
         return contacts
