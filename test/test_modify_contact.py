@@ -3,7 +3,7 @@ from model.contact import Contact
 import random
 
 
-def test_modify_contact_name(app,db):
+def test_modify_contact_name(app, db, check_ui):
     if len(db.get_contact_list()) == 0:
         app.contact.create(Contact(first_name="Vasya"))
     old_contacts = db.get_contact_list()
@@ -15,3 +15,5 @@ def test_modify_contact_name(app,db):
     index = old_contacts.index(contact)
     old_contacts[index] = modified_contact
     assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+    if check_ui:
+        assert sorted(new_contacts, key=Contact.id_or_max) == sorted(app.contact.get_contact_list(), key=Contact.id_or_max)
