@@ -2,6 +2,7 @@
 from model.group import Group
 import random
 
+
 def test_delete_some_group(app, db):
     if len(db.get_group_list()) == 0:
         app.group.create(Group(name="test"))
